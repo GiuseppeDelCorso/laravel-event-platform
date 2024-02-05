@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\event;
 use App\Http\Requests\StoreeventRequest;
 use App\Http\Requests\UpdateeventRequest;
+use App\Models\tag;
 
 class EventController extends Controller
 {
@@ -15,7 +16,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $events = event::all();
+        $tags = tag::all();
+        return view('admin.events.index', compact('events', 'tags'));
     }
 
     /**
