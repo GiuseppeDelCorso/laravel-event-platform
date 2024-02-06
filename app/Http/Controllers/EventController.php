@@ -28,7 +28,9 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        $events = event::all();
+        $tags = tag::all();
+        return view('admin.events.create', compact('events', 'tags'));
     }
 
     /**
@@ -39,18 +41,21 @@ class EventController extends Controller
      */
     public function store(StoreeventRequest $request)
     {
-        //
+
+        $dati_validi = $request->validated();
+
+        $new_event = new Event();
+        $new_event->fill($dati_validi);
+        $new_event->save();
+
+        return redirect()->route('admin.event.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\event  $event
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(event $event)
     {
-        //
+        $events = event::all();
+        return view('admin.events.show', compact("event"));
     }
 
     /**
@@ -61,7 +66,7 @@ class EventController extends Controller
      */
     public function edit(event $event)
     {
-        //
+        return view('admin.events.edit', compact('event'));
     }
 
     /**
@@ -73,7 +78,9 @@ class EventController extends Controller
      */
     public function update(UpdateeventRequest $request, event $event)
     {
-        //
+        $data =  $request->validated();
+        $event->update($data);
+        return redirect()->route('admin.event.show', $event->id);
     }
 
     /**
@@ -84,6 +91,7 @@ class EventController extends Controller
      */
     public function destroy(event $event)
     {
-        //
+        $event->delete();
+        return redirect()->route('admin.event.index');
     }
 }

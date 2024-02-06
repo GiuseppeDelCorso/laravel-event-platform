@@ -20,9 +20,6 @@
                         <div>
                             <p>{{$event->available_tickets}}</p>
                         </div>
-                        <div>
-                            {{ $event->tag ? $event->tag->type : 'senza tipo' }}
-                        </div>
                         <div class="card-body">
                                 @if (count($event->tags) > 0)
                                     <ul>
@@ -33,7 +30,21 @@
                                 @else
                                     <span>Non ci sono tag collegati</span>
                                 @endif
-                            </div>
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-outline-primary">
+                                         <a href="{{ route('admin.event.create') }}">Aggiungi Un Fumetto</a>
+                                    </button>
+                                    <button type="submit" class="btn btn-outline-success">
+                                         <a href="{{ route('admin.event.show',  $event->id) }}">Mostra Evento</a>
+                                    </button>
+                                    <form action="{{ route('admin.event.destroy', $event->id)}}" method="POST" >
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="submit" value="Cancella" class="btn btn-danger">
+                                    </form>
+                                    <a href="{{ route('admin.event.edit', $event->id) }}" class="btn btn-primary">Modifica il Fumetto</a>
+                                </div>
+                        </div>
                     </div>
                 </div>
             @endforeach
@@ -41,13 +52,10 @@
     </div>
 @endsection
 <style>
+.btnHeaderAdd{
+    color: black;
+    background-color: white;
 
-.StyleImg{
-
-    width: 300px;
-    height: 200px;
-    object-fit: cover;
-    margin: 20px 20px 20px 80px    
-}   
+}
 
 </style>
