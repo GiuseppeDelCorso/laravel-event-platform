@@ -13,12 +13,22 @@
     <div class="container-fluid mt-4">
         <div class="row justify-content-center">
             @foreach ($events as $event)
-                <div class="col-md-4">
+                <div class="col-md-4 mt-3">
                     <div class="card">
-                        <div class="card-header">{{ $event->name}}</div>
-                        <div class="card-body">{{ $event->date }}</div>
-                        <div>
-                            <p>{{$event->available_tickets}}</p>
+                        <div class="card-header d-flex justify-content-between">
+                                <h4 class="mt-2">{{ $event->name}}</h4>
+                            </button>
+                                <form action="{{ route('admin.event.destroy', $event->id)}}" method="POST" >
+                                 @csrf
+                                @method('DELETE')
+                                <input type="submit" value="Cancella" class="btn btn-danger mt-2 ">
+                                </form>
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <p>Data  {{ $event->date }}</p>
+                                <p>Tickets Disponibili  {{$event->available_tickets}}</p>   
+                            </div>
                         </div>
                         <div class="card-body">
                                 @if (count($event->tags) > 0)
@@ -28,21 +38,17 @@
                                         @endforeach
                                     </ul>
                                 @else
-                                    <span>Non ci sono tag collegati</span>
+                                    <div class="py-3">Non ci sono tag collegati</div>
                                 @endif
                                 <div class="d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-outline-primary">
-                                         <a href="{{ route('admin.event.create') }}">Aggiungi Un Fumetto</a>
+                                    <button type="submit" class="btn btn-primary mx-2">
+                                         <a  class="bgWhite" href="{{ route('admin.event.create') }}">Aggiungi Un Fumetto</a>
                                     </button>
-                                    <button type="submit" class="btn btn-outline-success">
-                                         <a href="{{ route('admin.event.show',  $event->id) }}">Mostra Evento</a>
+                                    <button type="submit" class="btn btn-info mx-2">
+                                        <a class="bgWhite" href="{{ route('admin.event.show',  $event->id) }}">Mostra Evento</a>
+                                    <button type="submit" class="btn btn-warning mx-2">
+                                        <a class="bgWhite" href="{{ route('admin.event.edit', $event->id) }}">Modifica il Fumetto</a>
                                     </button>
-                                    <form action="{{ route('admin.event.destroy', $event->id)}}" method="POST" >
-                                        @csrf
-                                        @method('DELETE')
-                                        <input type="submit" value="Cancella" class="btn btn-danger">
-                                    </form>
-                                    <a href="{{ route('admin.event.edit', $event->id) }}" class="btn btn-primary">Modifica il Fumetto</a>
                                 </div>
                         </div>
                     </div>
@@ -52,10 +58,8 @@
     </div>
 @endsection
 <style>
-.btnHeaderAdd{
-    color: black;
-    background-color: white;
-
+.bgWhite{
+    color: white;
 }
 
 </style>

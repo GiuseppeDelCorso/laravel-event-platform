@@ -26,11 +26,11 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Event $event, tag $tag)
     {
         $events = event::all();
         $tags = tag::all();
-        return view('admin.events.create', compact('events', 'tags'));
+        return view('admin.events.create', compact('event', 'tags'));
     }
 
     /**
@@ -66,7 +66,9 @@ class EventController extends Controller
      */
     public function edit(event $event)
     {
-        return view('admin.events.edit', compact('event'));
+        $events = event::all();
+        $tags = tag::all();
+        return view('admin.events.edit', compact('event', 'tags'));
     }
 
     /**
@@ -79,6 +81,9 @@ class EventController extends Controller
     public function update(UpdateeventRequest $request, event $event)
     {
         $data =  $request->validated();
+        if ($request->tags) {
+            $event->tags()->sync($request->tags);
+        }
         $event->update($data);
         return redirect()->route('admin.event.show', $event->id);
     }

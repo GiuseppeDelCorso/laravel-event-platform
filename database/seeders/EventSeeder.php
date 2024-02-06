@@ -23,7 +23,7 @@ class EventSeeder extends Seeder
 
             ],
             [
-                'name' => 'Welness',
+                'name' => 'Fiera Dei Farmer',
                 'date' => '23/1/2014',
                 'available_tickets' => false,
 
@@ -34,6 +34,11 @@ class EventSeeder extends Seeder
                 'available_tickets' => true,
 
             ],
+            [
+                'name' => 'Fiera Salsiccia e friarielli',
+                'date' => '23/11/2014',
+                'available_tickets' => true,
+            ]
         ];
         foreach ($events as $event) {
 
