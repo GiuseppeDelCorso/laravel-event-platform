@@ -20,6 +20,7 @@ class EventController extends Controller
     {
         $events = event::all();
         $tags = tag::all();
+
         return view('admin.events.index', compact('events', 'tags'));
     }
 

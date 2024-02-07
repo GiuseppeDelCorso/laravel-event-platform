@@ -42,12 +42,12 @@
                                 @endif
                                 <div class="d-flex justify-content-center">
                                     <button type="submit" class="btn btn-primary mx-2">
-                                         <a  class="bgWhite" href="{{ route('admin.event.create') }}">Aggiungi Un Fumetto</a>
+                                         <a  class="bgWhite" href="{{ route('admin.event.create') }}">Aggiungi Un Evento</a>
                                     </button>
                                     <button type="submit" class="btn btn-info mx-2">
                                         <a class="bgWhite" href="{{ route('admin.event.show',  $event->id) }}">Mostra Evento</a>
                                     <button type="submit" class="btn btn-warning mx-2">
-                                        <a class="bgWhite" href="{{ route('admin.event.edit', $event->id) }}">Modifica il Fumetto</a>
+                                        <a class="bgWhite" href="{{ route('admin.event.edit', $event->id) }}">Modifica l'Evento</a>
                                     </button>
                                 </div>
                         </div>
