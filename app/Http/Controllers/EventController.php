@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\event;
 use App\Http\Requests\StoreeventRequest;
 use App\Http\Requests\UpdateeventRequest;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 use App\Models\tag;
 
 class EventController extends Controller
