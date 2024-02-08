@@ -20,24 +20,29 @@ class EventSeeder extends Seeder
                 'name' => 'Comicon',
                 'date' => '22/11/2001',
                 'available_tickets' => true,
+                'user_id' => 1,
 
             ],
             [
                 'name' => 'Fiera Dei Farmer',
                 'date' => '23/1/2014',
                 'available_tickets' => false,
+                'user_id' => 1,
 
             ],
             [
                 'name' => 'Monza',
                 'date' => '23/11/2014',
                 'available_tickets' => true,
+                'user_id' => 1,
+
 
             ],
             [
                 'name' => 'Fiera Salsiccia e friarielli',
                 'date' => '23/11/2014',
                 'available_tickets' => true,
+                'user_id' => 1,
             ]
         ];
         foreach ($events as $event) {
@@ -46,6 +51,7 @@ class EventSeeder extends Seeder
             $new_event->name = $event['name'];
             $new_event->date = $event['date'];
             $new_event->available_tickets =  $event['available_tickets'];
+            $new_event->user_id = $event['user_id'];
             $new_event->save();
         }
     }
