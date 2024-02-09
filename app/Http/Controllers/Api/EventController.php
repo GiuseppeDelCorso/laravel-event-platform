@@ -6,13 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\tag;
 
 class EventController extends Controller
 {
     //
     public function index()
     {
-        $results = Event::with("user")->get();
+        $results = Event::with(['user', 'tags'])->get();
         $data = [
             "success" => true,
             "payload" => $results
@@ -21,7 +22,7 @@ class EventController extends Controller
     }
     public function show($id)
     {
-        $event = Event::with("user")->find($id);
+        $event = Event::with('user')->find($id);
 
         return response()->json([
             "success" => $event ? true : false,
