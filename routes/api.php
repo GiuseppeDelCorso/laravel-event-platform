@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\EventController;
+use App\Http\Controllers\Api\TagsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
@@ -28,3 +29,5 @@ Route::get("/prova", function () {;
 
 Route::get("/events", [EventController::class, "index"]);
 Route::get("/events/{id}", [EventController::class, "show"]);
+Route::get("/tags", [TagsController::class, "index"]);
+Route::get("/tags/{id}", [TagsController::class, "show"]);
